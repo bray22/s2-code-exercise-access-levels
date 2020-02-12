@@ -38,14 +38,14 @@ export class App extends React.Component {
        
         return (
             <>
-            <div class="level-access-wrapper">
-                <div class="left-panel">
+            <div className="level-access-wrapper">
+                <div className="left-panel">
                     <h2>Access Levels</h2>
                     <AccessLevels />
                 </div>
-                <div class="right-panel">
+                <div className="right-panel">
                     <h2>Access Name</h2>
-                    <div class="right-panel-form">
+                    <div className="right-panel-form">
                         <AccessForm currentLevel={this.props.currentLevel} currentId={this.props.currentId} accessLevels={this.props.accessLevels} />
                     </div>
                 </div>

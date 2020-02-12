@@ -37,18 +37,18 @@ class ConnectedAccessLevels extends Component {
   render() { 
     const { accessLevels } = this.state;
     return (
-      <div class="leftPanel"> 
-        <div class="table"> 
-          <div class="table-row">
-              <div class="table-head table-cell-left name-cell">Name</div>
-              <div class="table-head reader-cell">Reader</div> 
-              <div class="table-head reader-type-cell">Reader Type</div> 
+      <div className="leftPanel"> 
+        <div className="table"> 
+          <div className="table-row">
+              <div className="table-head table-cell-left name-cell">Name</div>
+              <div className="table-head reader-cell">Reader</div> 
+              <div className="table-head reader-type-cell">Reader Type</div> 
           </div> 
           {accessLevels.map(el => (
-              <div id={el.id} class="table-row" key={el.id}>
-                <div id={el.id} class="table-cell table-cell-left name-cell" onClick={this.handleSubmit} key={el.id}>{el.name}</div>
-                <div id={el.id} class="table-cell reader-cell" onClick={this.handleSubmit} key={el.id}>{el.readerName}</div> 
-                <div id={el.id} class="table-cell reader-type-cell" onClick={this.handleSubmit}>{el.readerType}</div> 
+              <div name={el.id} className="table-row" key={el.id}>
+                <div id={el.id} className="table-cell table-cell-left name-cell" onClick={this.handleSubmit}>{el.name}</div>
+                <div id={el.id} className="table-cell reader-cell" onClick={this.handleSubmit}>{el.readerName}</div> 
+                <div id={el.id} className="table-cell reader-type-cell" onClick={this.handleSubmit}>{el.readerType}</div>
               </div>
           ))}
         </div>

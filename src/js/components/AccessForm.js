@@ -21,6 +21,7 @@ class ConnectedForm extends Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
     this.handleChangeReader = this.handleChangeReader.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentWillReceiveProps (newProps) {
@@ -50,26 +51,21 @@ class ConnectedForm extends Component {
     console.log(this.inputReader.value);
   }
 
-
   handleSubmit() {
-   // event.preventDefault();
-
-    const { title } = this.props;
     const inputs = {};
-
-
-    //console.log(this.props);
     inputs.id = this.props.currentId;
     inputs.name = this.inputName.value;
     inputs.Description = this.inputDescription.value;
     inputs.readerId = parseInt(this.inputReader.value);
-    console.log('inputs');
-    console.log(inputs);
-    
     this.props.saveLevel(inputs);
-    
-    
   }
+
+  handleCancel() {
+    this.inputName = this.props.currentLevel.name;
+    this.inputDescription = this.props.currentLevel.Description;
+    this.inputReader = this.props.currentLevel.readerId;
+  }
+
   render() {
     const selected = READERS.map(function(reader, index) {
       return <option value={reader.id}>{reader.name}</option>
@@ -82,13 +78,13 @@ class ConnectedForm extends Component {
         <option value="0">All Readers</option>
         {selected}
       </select>
-      
+
     return (
       <>
-        <div class="levelForm">
-          <div class="form-row">
-            <div class="field-name">Name:</div>
-            <div class="field-wrapper">
+        <div className="levelForm">
+          <div className="form-row">
+            <div className="field-name">Name:</div>
+            <div className="field-wrapper">
               <input
                 type="text"
                 ref={(userInput) => this.inputName = userInput}
@@ -97,26 +93,28 @@ class ConnectedForm extends Component {
               />
             </div>
           </div>
-          <div class="form-row">
-            <div class="field-name">Description:</div>
-              <div class="field-wrapper">
+          <div className="form-row">
+            <div className="field-name">Description:</div>
+              <div className="field-wrapper">
                 <textarea
                   type="text"
                   ref={(userInput) => this.inputDescription = userInput}
-                  onChange={this.handleChangeDescription}>
-                    {this.props.currentLevel.Description}
+                  onChange={this.handleChangeDescription}
+                  defaultValue={this.props.currentLevel.Description}
+                  >
+                    
                 </textarea>
               </div>
           </div>
-          <div class="form-row">
-            <div class="field-name">Reader(s):</div>
-            <div class="field-wrapper">
+          <div className="form-row">
+            <div className="field-name">Reader(s):</div>
+            <div className="field-wrapper">
               {readerSelect}
             </div>
           </div>
-          <div class="form-row">
+          <div className="form-row">
             <button type="submit" onClick={this.handleSubmit}>Save</button>
-            <button type="submit" onClick={this.handleSubmit}>Cancel</button>
+            <button type="cancel" onClick={this.handleCancel}>Cancel</button>
           </div>
         </div>
       </>
